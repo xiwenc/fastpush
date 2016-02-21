@@ -1,0 +1,10 @@
+{
+  "name": "http-server",
+  "version": "0.0.1",
+  "author": "Xiwen Cheng <x@cinaq.com>",
+  "description": "webserver demo",
+  "dependencies" : [ ],
+  "engines": {
+    "node": ">=0.10"
+  }
+}
