@@ -26,10 +26,10 @@ Disclaimer
 - FastPush *does not* work with multi-instance deployments
 - FastPush should *never* be used to deploy production applications
 
-Cloud Foundry Python Tutorial
+Cloud Foundry Tutorial
 ===
 
-For those that are still confused why *FastPush* is such an awesome tool just follow this short step-by-step tutorial where we deploy an example python application:
+For those that are still confused why *FastPush* is such an awesome tool just follow this short step-by-step tutorial where we deploy an example application:
 
 ```bash
 # Install cf-fastpush-plugin
@@ -40,6 +40,7 @@ rm cf-fastpush-plugin
 
 # grab example app
 git clone https://github.com/xiwenc/fastpush.git
+# Here we choose python, but there are more examples
 cd fastpush/examples/python
 
 # Install cf-fastpush-controller
