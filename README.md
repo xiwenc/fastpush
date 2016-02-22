@@ -1,13 +1,28 @@
-FastPush: Update Cloud Foundry/Heroku application in seconds
+FastPush: Push updates to Cloud Foundry/Heroku apps in seconds
 ==
 
 > Why should your development environment be any different from your production environment except for the number of instances?
 
-*FastPush* enables developers to push incremental updates of your application to [Cloud Foundry](https://www.cloudfoundry.org)/[Heroku](https://www.heroku.com). In addition to pushing incremental updates it detects whether it is necessary to restart the application for the new changes to have effect. As a result updating your application takes *seconds* instead of *minutes*.
+*FastPush* allows you to instantly push updates of your code to [Cloud Foundry](https://www.cloudfoundry.org)/[Heroku](https://www.heroku.com). If static files have changed, it just syncs those. If code has changed, it also restarts the app. As a result updating your application takes *seconds* instead of *minutes*. So no more getting coffee while waiting for `cf push` and more importantly, your *flow* won't be interrupted.
 
-During Cloud Foundry Summit Berlin 2015 [Jouke](https://github.com/jtwaleson) and [Xiwen](https://github.com/xiwenc) had an eureka moment on how to speed up deployment speed of apps. The original idea was first brought up by Jouke because we were challenged to make application deployments faster at [Mendix](https://www.mendix.com) which adopted Cloud Foundry. At the conference we were inspired by the community and [Cloud Rocker](https://github.com/CloudCredo/cloudrocker). With *FastPush* we solve somewhat the same problem as *Cloud Rocker* namely: how to develop applications at a faster pace by shortening the feedback loop. Cloud Rocker enables developers to run their application locally using *Docker*. *FastPush* shortens deployment time to a real Cloud Foundry cluster by efficiently synchronizing changed files *without restaging* the application. This way we can still leverage all the goodies of CF like publicly accessible and the rich services ecosystem.
+Pros:
+- never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry
+- eliminate differences between dev & prod, no more `port = (env.process.PORT || 5000)`
 
-Developers and Designers love FastPush because small changes in the source code can be deployed almost instantly without the need to run supporting services locally. Just like how Cloud Foundry/Heroku revolutionized deployment of applications we hope to bring this revolution closer into the development process.
+Cons:
+- unable to work offline
+- app reverts to last pushed version when restarted
+- still need full push when dependencies change
+
+
+How does it work
+===
+
+We add a small http proxy (`cf-fastpush-controller`, written in Go) between the app's http port and the PaaS routing layer. This http proxy just proxies everything to the application, except that it has a file synchronization api listening on `/_fastpush/`. This allows us to modify the live file system of the container.
+
+We transfer local files to the server with the `cf-fastpush-plugin`, a cf cli plugin that talks to the controller. It tracks your local files and synchronizes those that have been changed or added.
+
+The actual code does more than what is documented here. So we suggest you to read the source if you are really interested in how it works and what else it can do.
 
 > Current documentation is fairly low because this project is still very young. We invite others to contribute. The code quality is not great either and we plan to refactor it in the near future. Please keep in mind the current state is far from production ready but for its purpose it is good enough to be used as a developer tool ;)
 
@@ -21,7 +36,7 @@ Related projects
 Disclaimer
 ===
 
-- FastPush is lightning fast because it skips the staging phase in Cloud Foundry for subsequent changes. This means that `cf fast-push` cannot and will never replace the standard `cf push` command.
+- FastPush is lightning fast because it skips the `staging` phase in Cloud Foundry for subsequent changes. This means that `cf fast-push` cannot and will never replace the standard `cf push` command.
 - FastPush *does not* work with multi-instance deployments
 - FastPush should *never* be used to deploy production applications
 
@@ -81,16 +96,6 @@ time cf fast-push samplefastpush
 Please note that the initial push is not very representative of a real world scenario because it adds overhead of having to push the cf-fastpush-controller binary. We can speed it up for slow connections by incorporating it in buildpacks that fetches the executable if needed.
 
 Note: Feel free to submit Pull-requests for examples integrations with other frameworks/languages.
-
-How it works
-===
-
-The fastpush mechanism uses the server-client model. The server is `cf-fastpush-controller` and the client is a cf cli plugin `cf-fastpush-plugin`.
-
-- `cf-fastpush-controller`: A daemon that sits between your application and the gorouters. This service is always available and it responds to some specific paths under `/_fastpush/`. Paths that are not known to the controller are reverse-proxied to the backend application which is your application. It keeps track of your remote files and accepts new and existing files. Depending on what files has changed it can trigger an automatic restart of the backend.
-- `cf-fastpush-plugin`: A cf cli plugin that talks to the controller. It tracks your local files and synchronizes those that has been changed or added.
-
-The actual code does more than what is documented here. So we suggest you to read the source if you are really interested in how it works and what else it can do.
 
 
 Credits:
