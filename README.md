@@ -1,6 +1,8 @@
 FastPush: Update Cloud Foundry/Heroku application in seconds
 ==
 
+> Why should your development environment be any different from your production environment except for the number of instances?
+
 *FastPush* enables developers to push incremental updates of your application to [Cloud Foundry](https://www.cloudfoundry.org)/[Heroku](https://www.heroku.com). In addition to pushing incremental updates it detects whether it is necessary to restart the application for the new changes to have effect. As a result updating your application takes *seconds* instead of *minutes*.
 
 During Cloud Foundry Summit Berlin 2015 [Jouke](https://github.com/jtwaleson) and [Xiwen](https://github.com/xiwenc) had an eureka moment on how to speed up deployment speed of apps. The original idea was first brought up by Jouke because we were challenged to make application deployments faster at [Mendix](https://www.mendix.com) which adopted Cloud Foundry. At the conference we were inspired by the community and [Cloud Rocker](https://github.com/CloudCredo/cloudrocker). With *FastPush* we solve somewhat the same problem as *Cloud Rocker* namely: how to develop applications at a faster pace by shortening the feedback loop. Cloud Rocker enables developers to run their application locally using *Docker*. *FastPush* shortens deployment time to a real Cloud Foundry cluster by efficiently synchronizing changed files *without restaging* the application. This way we can still leverage all the goodies of CF like publicly accessible and the rich services ecosystem.
