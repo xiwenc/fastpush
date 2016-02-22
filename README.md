@@ -9,15 +9,12 @@ Developers and Designers love FastPush because small changes in the source code 
 
 > Current documentation is fairly low because this project is still very young. We invite others to contribute. The code quality is not great either and we plan to refactor it in the near future. Please keep in mind the current state is far from production ready but for its purpose it is good enough to be used as a developer tool ;)
 
-Usage
+Related projects
 ===
 
-It is extremely easy to start using *FastPush*:
-
-1. Build and include [cf-fastpush-controller](https://github.com/xiwenc/cf-fastpush-controller) executable in your application code.
-2. Build and install [cf-fastpush-plugin](https://github.com/xiwenc/cf-fastpush-plugin) in your CF CLI. (As of this writing there is no Heroku plugin yet)
-3. Modify your `manifest.yml` to configure your application and `cf-fastpush-controller`.
-4. After your first `cf push` you can incrementally push updates with `cf fastpush`.
+- [fastpush](https://github.com/xiwenc/fastpush) (this repo) FastPush documentation with integration examples
+- [cf-fastpush-controller](https://github.com/xiwenc/cf-fastpush-controller) FastPush server written in Go that can be included in your application root directory
+- [cf-fastpush-plugin](https://github.com/xiwenc/cf-fastpush-plugin) FastPush client plugin for Cloud Foundry CLI
 
 Disclaimer
 ===
@@ -25,6 +22,16 @@ Disclaimer
 - FastPush is lightning fast because it skips the staging phase in Cloud Foundry for subsequent changes. This means that `cf fast-push` cannot and will never replace the standard `cf push` command.
 - FastPush *does not* work with multi-instance deployments
 - FastPush should *never* be used to deploy production applications
+
+Usage
+===
+
+It is extremely easy to start using *FastPush*:
+
+1. Build and include [cf-fastpush-controller](https://github.com/xiwenc/cf-fastpush-controller) executable in your application code.
+2. Build and install [cf-fastpush-plugin](https://github.com/xiwenc/cf-fastpush-plugin) in your CF CLI. As of this writing there is no Heroku plugin yet.
+3. Modify your `manifest.yml` to configure your application and `cf-fastpush-controller`.
+4. After your first `cf push` you can incrementally push updates with `cf fast-push`.
 
 Cloud Foundry Tutorial
 ===
