@@ -7,13 +7,13 @@ FastPush: Push updates to Cloud Foundry/Heroku apps in seconds
 *FastPush* allows you to instantly push updates of your code to [Cloud Foundry](https://www.cloudfoundry.org)/[Heroku](https://www.heroku.com). If static files have changed, it just syncs those. If code has changed, it also restarts the app. As a result updating your application takes *seconds* instead of *minutes*. So no more getting coffee while waiting for `cf push` and more importantly, your *flow* won't be interrupted.
 
 Pros:
-- never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry
-- eliminate differences between dev & prod, no more `port = (env.process.PORT || 5000)`
+- Never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry
+- Eliminate differences between dev & prod, no more `port = (env.process.PORT || 5000)`
 
 Cons:
-- unable to work offline
-- app reverts to last pushed version when restarted
-- still need full push when dependencies change
+- Unable to work offline
+- App reverts to last pushed version when restarted
+- Still need full push when dependencies change
 
 
 How does it work
