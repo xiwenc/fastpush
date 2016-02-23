@@ -14,6 +14,7 @@ Cons:
 - app reverts to last pushed version when restarted
 - still need full push when dependencies change
 
+![FastPush an example nodejs application with Cloud Foundry](https://github.com/xiwenc/fastpush/raw/master/resources/fastpush-example-nodejs.gif)
 
 How does it work
 ===
