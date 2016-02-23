@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Fastpush : Smart Incremental application update">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Fastpush</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/xiwenc/fastpush">View on GitHub</a>
+
+          <h1 id="project_title">Fastpush</h1>
+          <h2 id="project_tagline">Smart Incremental application update</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/xiwenc/fastpush/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/xiwenc/fastpush/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="fastpush-push-updates-to-cloud-foundryheroku-apps-in-seconds" class="anchor" href="#fastpush-push-updates-to-cloud-foundryheroku-apps-in-seconds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FastPush: Push updates to Cloud Foundry/Heroku apps in seconds</h1>
+
+<blockquote>
+<p>Why should your development environment be any different from your production environment except for the number of instances?</p>
+</blockquote>
+
+<p><em>FastPush</em> allows you to instantly push updates of your code to <a href="https://www.cloudfoundry.org">Cloud Foundry</a>/<a href="https://www.heroku.com">Heroku</a>. If static files have changed, it just syncs those. If code has changed, it also restarts the app. As a result updating your application takes <em>seconds</em> instead of <em>minutes</em>. So no more getting coffee while waiting for <code>cf push</code> and more importantly, your <em>flow</em> won't be interrupted.</p>
+
+<p>Pros:</p>
+
+<ul>
+<li>never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry</li>
+<li>eliminate differences between dev &amp; prod, no more <code>port = (env.process.PORT || 5000)</code>
+</li>
+</ul>
+
+<p>Cons:</p>
+
+<ul>
+<li>unable to work offline</li>
+<li>app reverts to last pushed version when restarted</li>
+<li>still need full push when dependencies change</li>
+</ul>
+
+<h1>
+<a id="how-does-it-work" class="anchor" href="#how-does-it-work" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How does it work</h1>
+
+<p>We add a small http proxy (<code>cf-fastpush-controller</code>, written in Go) between the app's http port and the PaaS routing layer. This http proxy just proxies everything to the application, except that it has a file synchronization api listening on <code>/_fastpush/</code>. This allows us to modify the live file system of the container.</p>
+
+<p>We transfer local files to the server with the <code>cf-fastpush-plugin</code>, a cf cli plugin that talks to the controller. It tracks your local files and synchronizes those that have been changed or added.</p>
+
+<p>The actual code does more than what is documented here. So we suggest you to read the source if you are really interested in how it works and what else it can do.</p>
+
+<blockquote>
+<p>Current documentation is fairly low because this project is still very young. We invite others to contribute. The code quality is not great either and we plan to refactor it in the near future. Please keep in mind the current state is far from production ready but for its purpose it is good enough to be used as a developer tool ;)</p>
+</blockquote>
+
+<h1>
+<a id="related-projects" class="anchor" href="#related-projects" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Related projects</h1>
+
+<ul>
+<li>
+<a href="https://github.com/xiwenc/fastpush">fastpush</a> (this repo) FastPush documentation with integration examples</li>
+<li>
+<a href="https://github.com/xiwenc/cf-fastpush-controller">cf-fastpush-controller</a> FastPush server written in Go that can be included in your application root directory</li>
+<li>
+<a href="https://github.com/xiwenc/cf-fastpush-plugin">cf-fastpush-plugin</a> FastPush client plugin for Cloud Foundry CLI</li>
+</ul>
+
+<h1>
+<a id="disclaimer" class="anchor" href="#disclaimer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Disclaimer</h1>
+
+<ul>
+<li>FastPush is lightning fast because it skips the <code>staging</code> phase in Cloud Foundry for subsequent changes. This means that <code>cf fast-push</code> cannot and will never replace the standard <code>cf push</code> command.</li>
+<li>FastPush <em>does not</em> work with multi-instance deployments</li>
+<li>FastPush should <em>never</em> be used to deploy production applications</li>
+</ul>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>It is extremely easy to start using <em>FastPush</em>:</p>
+
+<ol>
+<li>Build and include <a href="https://github.com/xiwenc/cf-fastpush-controller">cf-fastpush-controller</a> executable in your application code.</li>
+<li>Build and install <a href="https://github.com/xiwenc/cf-fastpush-plugin">cf-fastpush-plugin</a> in your CF CLI. As of this writing there is no Heroku plugin yet.</li>
+<li>Modify your <code>manifest.yml</code> to configure your application and <code>cf-fastpush-controller</code>.</li>
+<li>After your first <code>cf push</code> you can incrementally push updates with <code>cf fast-push</code>.</li>
+</ol>
+
+<h1>
+<a id="cloud-foundry-tutorial" class="anchor" href="#cloud-foundry-tutorial" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cloud Foundry Tutorial</h1>
+
+<p>For those that are still confused why <em>FastPush</em> is such an awesome tool just follow this short step-by-step tutorial where we deploy an example application:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Install cf-fastpush-plugin</span>
+wget https://github.com/xiwenc/cf-fastpush-plugin/raw/master/cf-fastpush-plugin
+chmod 755 cf-fastpush-plugin
+cf install-plugin cf-fastpush-plugin
+rm cf-fastpush-plugin
+
+<span class="pl-c"># grab example app</span>
+git clone https://github.com/xiwenc/fastpush.git
+<span class="pl-c"># Here we choose python, but there are more examples</span>
+<span class="pl-c1">cd</span> fastpush/examples/python
+
+<span class="pl-c"># Install cf-fastpush-controller</span>
+wget https://github.com/xiwenc/cf-fastpush-controller/raw/master/cf-fastpush-controller
+chmod 755 cf-fastpush-controller
+
+<span class="pl-c"># Let's push our initial application</span>
+<span class="pl-k">time</span> cf push samplefastpush
+<span class="pl-c"># ... snip ...</span>
+<span class="pl-c"># #0   running   2016-01-29 09:31:06 PM   0.0%   15.7M of 128M   114.9M of 256M</span>
+<span class="pl-c"># ... snip ...</span>
+<span class="pl-c">#cf push samplefastpush  1.88s user 1.91s system 5% cpu 1:04.55 total</span>
+
+
+<span class="pl-c"># Now with fast push</span>
+
+<span class="pl-c"># Change the file a bit</span>
+vim hello.py
+
+<span class="pl-c"># repush with fast-push</span>
+<span class="pl-k">time</span> cf fast-push samplefastpush
+<span class="pl-c"># ... snip ...</span>
+<span class="pl-c"># [MOD] hello.py</span>
+<span class="pl-c"># [NEW] manifest.yml</span>
+<span class="pl-c"># Restarting after updating 2 files</span>
+
+<span class="pl-c"># cf fast-push samplefastpush  0.40s user 0.05s system 7% cpu 5.667 total</span></pre></div>
+
+<p>Please note that the initial push is not very representative of a real world scenario because it adds overhead of having to push the cf-fastpush-controller binary. We can speed it up for slow connections by incorporating it in buildpacks that fetches the executable if needed.</p>
+
+<p>Note: Feel free to submit Pull-requests for examples integrations with other frameworks/languages.</p>
+
+<h1>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credits:</h1>
+
+<ul>
+<li>Mendix: Great place to work</li>
+<li>Colleagues @ Mendix</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Fastpush maintained by <a href="https://github.com/xiwenc">xiwenc</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-74177616-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
