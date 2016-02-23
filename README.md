@@ -1,6 +1,7 @@
 FastPush: Push updates to Cloud Foundry/Heroku apps in seconds
 ==
 
+![FastPush an example nodejs application with Cloud Foundry](https://github.com/xiwenc/fastpush/raw/master/resources/fastpush-example-nodejs.gif)
 > Why should your development environment be any different from your production environment except for the number of instances?
 
 *FastPush* allows you to instantly push updates of your code to [Cloud Foundry](https://www.cloudfoundry.org)/[Heroku](https://www.heroku.com). If static files have changed, it just syncs those. If code has changed, it also restarts the app. As a result updating your application takes *seconds* instead of *minutes*. So no more getting coffee while waiting for `cf push` and more importantly, your *flow* won't be interrupted.
@@ -14,7 +15,6 @@ Cons:
 - app reverts to last pushed version when restarted
 - still need full push when dependencies change
 
-![FastPush an example nodejs application with Cloud Foundry](https://github.com/xiwenc/fastpush/raw/master/resources/fastpush-example-nodejs.gif)
 
 How does it work
 ===
@@ -56,36 +56,38 @@ Cloud Foundry Tutorial
 
 For those that are still confused why *FastPush* is such an awesome tool just follow this short step-by-step tutorial where we deploy an example application:
 
-```bash
-# Install cf-fastpush-plugin
+Install cf-fastpush-plugin:
+```
 wget https://github.com/xiwenc/cf-fastpush-plugin/raw/master/cf-fastpush-plugin
 chmod 755 cf-fastpush-plugin
 cf install-plugin cf-fastpush-plugin
 rm cf-fastpush-plugin
+```
 
-# grab example app
+Let's prepare an example application. Here we choose python, but there are more examples:
+```
 git clone https://github.com/xiwenc/fastpush.git
-# Here we choose python, but there are more examples
 cd fastpush/examples/python
+```
 
-# Install cf-fastpush-controller
+Install `cf-fastpush-controller` in our example application:
+```
 wget https://github.com/xiwenc/cf-fastpush-controller/raw/master/cf-fastpush-controller
-chmod 755 cf-fastpush-controller
+chmod +x cf-fastpush-controller
+```
 
-# Let's push our initial application
+Next push our example application:
+```
 time cf push samplefastpush
 # ... snip ...
 # #0   running   2016-01-29 09:31:06 PM   0.0%   15.7M of 128M   114.9M of 256M
 # ... snip ...
 #cf push samplefastpush  1.88s user 1.91s system 5% cpu 1:04.55 total
+```
 
-
-# Now with fast push
-
-# Change the file a bit
+Now edit the source code a bit and re-push the app with `fast-push`:
+```
 vim hello.py
-
-# repush with fast-push
 time cf fast-push samplefastpush
 # ... snip ...
 # [MOD] hello.py
@@ -95,9 +97,6 @@ time cf fast-push samplefastpush
 # cf fast-push samplefastpush  0.40s user 0.05s system 7% cpu 5.667 total
 ```
 Please note that the initial push is not very representative of a real world scenario because it adds overhead of having to push the cf-fastpush-controller binary. We can speed it up for slow connections by incorporating it in buildpacks that fetches the executable if needed.
-
-Note: Feel free to submit Pull-requests for examples integrations with other frameworks/languages.
-
 
 Credits:
 ===
