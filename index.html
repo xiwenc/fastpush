@@ -1,38 +1,47 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Fastpush : Smart Incremental application update">
+    <title>Fastpush by xiwenc</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Fastpush</title>
   </head>
-
   <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/xiwenc/fastpush">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/xiwenc/fastpush/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/xiwenc/fastpush/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/xiwenc/fastpush">View on GitHub</a>
+    <div class="wrapper">
 
-          <h1 id="project_title">Fastpush</h1>
-          <h2 id="project_tagline">Smart Incremental application update</h2>
+      <section>
+        <div id="title">
+          <h1>Fastpush</h1>
+          <p>Smart Incremental application update</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/xiwenc">xiwenc</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/xiwenc/fastpush/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/xiwenc/fastpush/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
         <h1>
 <a id="fastpush-push-updates-to-cloud-foundryheroku-apps-in-seconds" class="anchor" href="#fastpush-push-updates-to-cloud-foundryheroku-apps-in-seconds" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FastPush: Push updates to Cloud Foundry/Heroku apps in seconds</h1>
+
+<p><img src="https://github.com/xiwenc/fastpush/raw/master/resources/fastpush-example-nodejs.gif" alt="FastPush an example nodejs application with Cloud Foundry"></p>
 
 <blockquote>
 <p>Why should your development environment be any different from your production environment except for the number of instances?</p>
@@ -43,17 +52,17 @@
 <p>Pros:</p>
 
 <ul>
-<li>never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry</li>
-<li>eliminate differences between dev &amp; prod, no more <code>port = (env.process.PORT || 5000)</code>
+<li>Never install local database, message brokers, email providers etc., simply use the Free Tiers of the 3rd party providers on Heroku / Cloud Foundry</li>
+<li>Eliminate differences between dev &amp; prod, no more <code>port = (env.process.PORT || 5000)</code>
 </li>
 </ul>
 
 <p>Cons:</p>
 
 <ul>
-<li>unable to work offline</li>
-<li>app reverts to last pushed version when restarted</li>
-<li>still need full push when dependencies change</li>
+<li>Unable to work offline</li>
+<li>App reverts to last pushed version when restarted</li>
+<li>Still need full push when dependencies change</li>
 </ul>
 
 <h1>
@@ -107,46 +116,48 @@
 
 <p>For those that are still confused why <em>FastPush</em> is such an awesome tool just follow this short step-by-step tutorial where we deploy an example application:</p>
 
-<div class="highlight highlight-source-shell"><pre><span class="pl-c"># Install cf-fastpush-plugin</span>
-wget https://github.com/xiwenc/cf-fastpush-plugin/raw/master/cf-fastpush-plugin
+<p>Install cf-fastpush-plugin:</p>
+
+<pre><code>wget https://github.com/xiwenc/cf-fastpush-plugin/raw/master/cf-fastpush-plugin
 chmod 755 cf-fastpush-plugin
 cf install-plugin cf-fastpush-plugin
 rm cf-fastpush-plugin
+</code></pre>
 
-<span class="pl-c"># grab example app</span>
-git clone https://github.com/xiwenc/fastpush.git
-<span class="pl-c"># Here we choose python, but there are more examples</span>
-<span class="pl-c1">cd</span> fastpush/examples/python
+<p>Let's prepare an example application. Here we choose python, but there are more examples:</p>
 
-<span class="pl-c"># Install cf-fastpush-controller</span>
-wget https://github.com/xiwenc/cf-fastpush-controller/raw/master/cf-fastpush-controller
-chmod 755 cf-fastpush-controller
+<pre><code>git clone https://github.com/xiwenc/fastpush.git
+cd fastpush/examples/python
+</code></pre>
 
-<span class="pl-c"># Let's push our initial application</span>
-<span class="pl-k">time</span> cf push samplefastpush
-<span class="pl-c"># ... snip ...</span>
-<span class="pl-c"># #0   running   2016-01-29 09:31:06 PM   0.0%   15.7M of 128M   114.9M of 256M</span>
-<span class="pl-c"># ... snip ...</span>
-<span class="pl-c">#cf push samplefastpush  1.88s user 1.91s system 5% cpu 1:04.55 total</span>
+<p>Install <code>cf-fastpush-controller</code> in our example application:</p>
 
+<pre><code>wget https://github.com/xiwenc/cf-fastpush-controller/raw/master/cf-fastpush-controller
+chmod +x cf-fastpush-controller
+</code></pre>
 
-<span class="pl-c"># Now with fast push</span>
+<p>Next push our example application:</p>
 
-<span class="pl-c"># Change the file a bit</span>
-vim hello.py
+<pre><code>time cf push samplefastpush
+# ... snip ...
+# #0   running   2016-01-29 09:31:06 PM   0.0%   15.7M of 128M   114.9M of 256M
+# ... snip ...
+#cf push samplefastpush  1.88s user 1.91s system 5% cpu 1:04.55 total
+</code></pre>
 
-<span class="pl-c"># repush with fast-push</span>
-<span class="pl-k">time</span> cf fast-push samplefastpush
-<span class="pl-c"># ... snip ...</span>
-<span class="pl-c"># [MOD] hello.py</span>
-<span class="pl-c"># [NEW] manifest.yml</span>
-<span class="pl-c"># Restarting after updating 2 files</span>
+<p>Now edit the source code a bit and re-push the app with <code>fast-push</code>:</p>
 
-<span class="pl-c"># cf fast-push samplefastpush  0.40s user 0.05s system 7% cpu 5.667 total</span></pre></div>
+<pre><code>vim hello.py
+time cf fast-push samplefastpush
+# ... snip ...
+# [MOD] hello.py
+# [NEW] manifest.yml
+# Restarting after updating 2 files
+
+# cf fast-push samplefastpush  0.40s user 0.05s system 7% cpu 5.667 total
+</code></pre>
 
 <p>Please note that the initial push is not very representative of a real world scenario because it adds overhead of having to push the cf-fastpush-controller binary. We can speed it up for slow connections by incorporating it in buildpacks that fetches the executable if needed.</p>
-
-<p>Note: Feel free to submit Pull-requests for examples integrations with other frameworks/languages.</p>
 
 <h1>
 <a id="credits" class="anchor" href="#credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Credits:</h1>
@@ -156,16 +167,9 @@ vim hello.py
 <li>Colleagues @ Mendix</li>
 </ul>
       </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Fastpush maintained by <a href="https://github.com/xiwenc">xiwenc</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
-      </footer>
     </div>
-
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -176,7 +180,6 @@ vim hello.py
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
