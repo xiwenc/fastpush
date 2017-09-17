@@ -1,11 +1,8 @@
 ---
 applications:
-- name: myapp
+- name: nodejsapp
   memory: 128MB
   disk_quota: 256MB
   random-route: true
-  command: ./cf-fastpush-controller
-  env:
-    BACKEND_COMMAND: node hello.js
-    BACKEND_PORT: 8081
-    RESTART_REGEX: "^*.js$"
+  buildpack: nodejs_buildpack
+  command: node hello.js

@@ -1,0 +1,12 @@
+---
+applications:
+- name: nodejsapp-fastpush
+  memory: 128MB
+  disk_quota: 256MB
+  random-route: true
+  buildpack: nodejs_buildpack
+  command: wget -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp
+  env:
+    BACKEND_COMMAND: node hello.js
+    BACKEND_PORT: 8081
+    RESTART_REGEX: "^*.js$"
