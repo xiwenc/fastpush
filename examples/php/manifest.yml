@@ -1,11 +1,8 @@
 ---
 applications:
-- name: myapp
+- name: phpapp
   memory: 128MB
   disk_quota: 256MB
+  buildpack: php_buildpack
   random-route: true
-  command: ./cf-fastpush-controller
-  env:
-    BACKEND_COMMAND: python .bp/bin/start
-    BACKEND_PORT: 8081
-    RESTART_REGEX: ""
+  command: python .bp/bin/start
