@@ -5,7 +5,7 @@ applications:
   disk_quota: 256MB
   buildpack: php_buildpack
   random-route: true
-  command: "wget -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp"
+  command: "wget -q -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp"
   env:
     BACKEND_COMMAND: python .bp/bin/start
     BACKEND_PORT: 8081
