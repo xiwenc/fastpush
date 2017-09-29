@@ -1,0 +1,14 @@
+---
+applications:
+- name: wordpress-fastpush
+  memory: 256MB
+  disk_quota: 512MB
+  buildpack: php_buildpack
+  random-route: true
+  services:
+    - wordpress-db
+  command: "wget -q -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp"
+  env:
+    BACKEND_COMMAND: python .bp/bin/start
+    BACKEND_PORT: 8081
+    RESTART_REGEX: ""

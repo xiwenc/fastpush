@@ -1,0 +1,10 @@
+---
+applications:
+- name: wordpress
+  memory: 256MB
+  disk_quota: 512MB
+  buildpack: php_buildpack
+  random-route: true
+  command: python .bp/bin/start
+  services:
+    - wordpress-db
