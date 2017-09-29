@@ -1,0 +1,67 @@
+Using manifest file manifest.yml
+
+Updating app python-flask in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading python-flask...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/python-flask
+Uploading 1.1K, 4 files
+Done uploading
+OK
+
+Stopping app python-flask in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app python-flask in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading python_buildpack...
+Downloaded python_buildpack (343.9M)
+Creating container
+Successfully created container
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (1.1K)
+Downloaded build artifacts cache (33.7M)
+-------> Buildpack version 1.5.24
+ !     Warning: Your application is missing a Procfile. This file tells Cloud Foundry how to run your application.
+ !     Learn more: https://docs.cloudfoundry.org/buildpacks/prod-server.html#procfile
+-----> Installing pip-pop (0.1.1)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_pip-pop_pip-pop-0.1.1-d410583a.tar.gz]
+-----> Installing pipenv (4.0.1)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_pipenv_pipenv-4.0.1-148f753f.tar.gz]
+     $ pip install -r requirements.txt
+No start command specified by buildpack or via Procfile.
+App will not start unless a command is provided at runtime.
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (33.7M)
+Uploaded droplet (33.7M)
+Uploading complete
+Stopping instance c8a8120c-45f7-4f88-b0a3-0b76aba8251c
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App python-flask was started using this command `python hello.py`
+
+Showing health and status for app python-flask in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: python-flask-algometrical-unenjoyableness.cfapps.io
+last uploaded: Wed Sep 13 17:24:28 UTC 2017
+stack: cflinuxfs2
+buildpack: python_buildpack
+
+     state     since                    cpu    memory       disk            details
+#0   running   2017-09-13 07:25:22 PM   0.0%   1M of 128M   82.3M of 256M
+cf push -f manifest.yml  0.50s user 0.26s system 1% cpu 1:03.35 total

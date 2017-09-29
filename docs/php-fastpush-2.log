@@ -1,0 +1,8 @@
+warning: dry run not set, commencing fast push
+Running the fast-push command
+Target app: phpapp-fastpush
+
+2017/09/13 19:54:51 Listing files for: ./
+[MOD] htdocs/index.php
+Updated 1 files without restart
+cf fp phpapp-fastpush  0.39s user 0.10s system 8% cpu 5.633 total

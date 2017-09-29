@@ -1,0 +1,10 @@
+warning: dry run not set, commencing fast push
+Running the fast-push command
+Target app: nodejsapp-fastpush
+
+2017/09/17 11:43:07 Listing files for: ./
+[MOD] hello.js
+[NEW] manifest.yml
+[MOD] package.json
+Restarting after updating 3 files
+cf fp nodejsapp-fastpush  0.33s user 0.08s system 4% cpu 8.851 total

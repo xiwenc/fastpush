@@ -1,0 +1,45 @@
+   2017-09-22T16:30:42.93+0200 [API/5] OUT Updated app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2 ({"name"=>"phpapp", "command"=>"PRIVATE DATA HIDDEN", "memory"=>128, "disk_quota"=>256, "buildpack"=>"php_buildpack", "environment_json"=>"PRIVATE DATA HIDDEN"})
+   2017-09-22T16:30:43.91+0200 [API/7] OUT Uploading bits for app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2
+   2017-09-22T16:30:50.26+0200 [API/7] OUT Updated app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2 ({"state"=>"STOPPED"})
+   2017-09-22T16:30:50.26+0200 [CELL/0] OUT Stopping instance a05a42a6-ee6d-4e8c-5491-7c98
+   2017-09-22T16:30:51.39+0200 [API/2] OUT Creating build for app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2
+   2017-09-22T16:30:51.83+0200 [API/2] OUT Updated app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2 ({"state"=>"STARTED"})
+   2017-09-22T16:30:50.27+0200 [CELL/SSHD/0] OUT Exit status 0
+   2017-09-22T16:30:50.27+0200 [APP/PROC/WEB/0] OUT Exit status 143
+   2017-09-22T16:30:50.28+0200 [CELL/0] OUT Destroying container
+   2017-09-22T16:30:50.66+0200 [CELL/0] OUT Successfully destroyed container
+   2017-09-22T16:30:52.38+0200 [STG/0] OUT Downloading php_buildpack...
+   2017-09-22T16:30:53.25+0200 [STG/0] OUT Successfully created container
+   2017-09-22T16:30:52.44+0200 [STG/0] OUT Downloaded php_buildpack
+   2017-09-22T16:30:52.44+0200 [STG/0] OUT Creating container
+   2017-09-22T16:30:53.65+0200 [STG/0] OUT Downloaded app package (575B)
+   2017-09-22T16:30:53.72+0200 [STG/0] OUT -------> Buildpack version 4.3.42
+   2017-09-22T16:30:53.57+0200 [STG/0] OUT Downloading build artifacts cache...
+   2017-09-22T16:30:53.57+0200 [STG/0] OUT Downloading app package...
+   2017-09-22T16:30:54.88+0200 [STG/0] OUT Installing PHP
+   2017-09-22T16:30:54.42+0200 [STG/0] OUT Installing HTTPD
+   2017-09-22T16:30:54.42+0200 [STG/0] OUT HTTPD 2.4.27
+   2017-09-22T16:30:54.57+0200 [STG/0] OUT Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_httpd_httpd-2.4.27-linux-x64-ebe06494.tgz] to [/tmp]
+   2017-09-22T16:30:55.16+0200 [STG/0] OUT Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2551a0b1.tgz] to [/tmp]
+   2017-09-22T16:30:54.88+0200 [STG/0] OUT PHP 5.6.31
+   2017-09-22T16:30:57.13+0200 [STG/0] OUT Finished: [2017-09-22 14:30:57.137016]
+   2017-09-22T16:31:09.11+0200 [STG/0] OUT Exit status 0
+   2017-09-22T16:31:09.18+0200 [STG/0] OUT Uploaded build artifacts cache (220B)
+   2017-09-22T16:31:09.11+0200 [STG/0] OUT Uploading droplet, build artifacts cache...
+   2017-09-22T16:31:09.11+0200 [STG/0] OUT Uploading build artifacts cache...
+   2017-09-22T16:31:09.11+0200 [STG/0] OUT Uploading droplet...
+   2017-09-22T16:31:10.22+0200 [API/3] OUT Creating droplet for app with guid c5fc07c5-1024-4a36-a583-bf60e7de03a2
+   2017-09-22T16:31:14.41+0200 [STG/0] OUT Uploaded droplet (57.1M)
+   2017-09-22T16:31:14.43+0200 [STG/0] OUT Uploading complete
+   2017-09-22T16:31:14.47+0200 [STG/0] OUT Stopping instance f83d7e8d-de29-42f0-997c-bd11dcb5f619
+   2017-09-22T16:31:14.47+0200 [STG/0] OUT Destroying container
+   2017-09-22T16:31:15.27+0200 [CELL/0] OUT Creating container
+   2017-09-22T16:31:15.78+0200 [STG/0] OUT Successfully destroyed container
+   2017-09-22T16:31:15.65+0200 [CELL/0] OUT Successfully created container
+   2017-09-22T16:31:19.34+0200 [CELL/0] OUT Starting health monitoring of container
+   2017-09-22T16:31:19.65+0200 [APP/PROC/WEB/0] OUT 14:31:19 php-fpm | [22-Sep-2017 14:31:19] NOTICE: fpm is running, pid 47
+   2017-09-22T16:31:19.65+0200 [APP/PROC/WEB/0] OUT 14:31:19 php-fpm | [22-Sep-2017 14:31:19] NOTICE: ready to handle connections
+   2017-09-22T16:31:19.65+0200 [APP/PROC/WEB/0] OUT 14:31:19 httpd   | [Fri Sep 22 14:31:19.656848 2017] [mpm_event:notice] [pid 45:tid 139771549951872] AH00489: Apache/2.4.27 (Unix) configured -- resuming normal operations
+   2017-09-22T16:31:19.65+0200 [APP/PROC/WEB/0] OUT 14:31:19 httpd   | [Fri Sep 22 14:31:19.656963 2017] [mpm_event:info] [pid 45:tid 139771549951872] AH00490: Server built: Jul 11 2017 15:27:58
+   2017-09-22T16:31:19.65+0200 [APP/PROC/WEB/0] OUT 14:31:19 httpd   | [Fri Sep 22 14:31:19.656980 2017] [core:notice] [pid 45:tid 139771549951872] AH00094: Command line: '/app/httpd/bin/httpd -f /home/vcap/app/httpd/conf/httpd.conf -D FOREGROUND'
+   2017-09-22T16:31:21.40+0200 [CELL/0] OUT Container became healthy

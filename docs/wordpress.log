@@ -1,0 +1,74 @@
+Using manifest file manifest.yml
+
+Updating app wordpress in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading wordpress...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/wordpress
+Uploading 4.4M, 1562 files
+Done uploading
+OK
+Binding service wordpress-db to app wordpress in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Stopping app wordpress in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app wordpress in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading php_buildpack...
+Downloaded php_buildpack (356.1M)
+Successfully created container
+Creating container
+-------> Buildpack version 4.3.42
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (8.4M)
+Installing HTTPD
+HTTPD 2.4.27
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_httpd_httpd-2.4.27-linux-x64-ebe06494.tgz] to [/tmp]
+Installing PHP
+PHP 5.6.31
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2551a0b1.tgz] to [/tmp]
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2551a0b1.tgz] to [/tmp]
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_composer_composer-1.5.2-ac2fa3db.phar] to [/tmp]
+PROTIP: Include a `composer.lock` file with your application! This will make sure the exact same version of dependencies are used when you deploy to CloudFoundry.
+Loading composer repositories with package information
+Updating dependencies
+Nothing to install or update
+Writing lock file
+Generating autoload files
+Finished: [2017-09-20 22:25:49.399749]
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (985B)
+Uploaded droplet (65.2M)
+Uploading complete
+Stopping instance 424f64b6-ae78-4ea2-a53d-faae6bc9a653
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App wordpress was started using this command `python .bp/bin/start`
+
+Showing health and status for app wordpress in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 256M x 1 instances
+urls: wordpress-auriculoventricular-haemolysin.cfapps.io
+last uploaded: Wed Sep 20 22:25:16 UTC 2017
+stack: cflinuxfs2
+buildpack: php_buildpack
+
+     state     since                    cpu    memory          disk             details
+#0   running   2017-09-21 12:26:18 AM   0.0%   23.1M of 256M   198.8M of 512M
+cf push -f manifest.yml  1.33s user 0.72s system 2% cpu 1:30.94 total

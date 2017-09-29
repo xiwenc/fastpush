@@ -1,0 +1,66 @@
+Using manifest file manifest-fastpush.yml
+
+Updating app phpapp-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading phpapp-fastpush...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/php
+Uploading 708B, 3 files
+Done uploading
+OK
+
+Stopping app phpapp-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app phpapp-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading php_buildpack...
+Successfully created container
+Downloaded php_buildpack
+Creating container
+Downloaded app package (565B)
+Downloading app package...
+Downloading build artifacts cache...
+-------> Buildpack version 4.3.41
+Downloaded [file:///tmp/buildpacks/ed483e37c1b0d5b580b4e156cb8d935c/dependencies/https___buildpacks.cloudfoundry.org_dependencies_httpd_httpd-2.4.27-linux-x64-ebe06494.tgz] to [/tmp]
+Downloaded build artifacts cache (217B)
+Installing HTTPD
+HTTPD 2.4.27
+Downloaded [file:///tmp/buildpacks/ed483e37c1b0d5b580b4e156cb8d935c/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2ed515dd.tgz] to [/tmp]
+Installing PHP
+PHP 5.6.31
+Finished: [2017-09-13 17:52:54.252365]
+Exit status 0
+Uploaded build artifacts cache (222B)
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded droplet (57M)
+Successfully destroyed container
+Uploading complete
+Stopping instance 273ee3d7-3346-4e53-8291-f6dd1d91f8ff
+Destroying container
+
+0 of 1 instances running, 1 starting
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App phpapp-fastpush was started using this command `wget -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp`
+
+Showing health and status for app phpapp-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: phpapp-fastpush-governable-oversureness.cfapps.io
+last uploaded: Wed Sep 13 17:52:40 UTC 2017
+stack: cflinuxfs2
+buildpack: php_buildpack
+
+     state     since                    cpu    memory       disk         details
+#0   running   2017-09-13 07:53:17 PM   0.0%   1M of 128M   4K of 256M
+cf push -f manifest-fastpush.yml  0.45s user 0.20s system 1% cpu 47.805 total

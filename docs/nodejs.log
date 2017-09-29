@@ -1,0 +1,93 @@
+Using manifest file manifest.yml
+
+Updating app nodejsapp in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading nodejsapp...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/nodejs
+Uploading 1023B, 3 files
+Done uploading
+OK
+
+Stopping app nodejsapp in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app nodejsapp in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading nodejs_buildpack...
+Downloaded nodejs_buildpack
+Creating container
+Successfully created container
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (1023B)
+Downloaded build artifacts cache (454B)
+-----> Nodejs Buildpack version 1.6.6
+-----> Installing binaries
+       engines.node (package.json): >=0.10
+       engines.npm (package.json): unspecified (use default)
+       **WARNING** Dangerous semver range (>) in engines.node. See: http://docs.cloudfoundry.org/buildpacks/node/node-tips.html
+-----> Installing node 8.3.0
+       Copy [/tmp/buildpacks/d4766448602964ccef4cfd240e0e9b4f/dependencies/2d221c561217c17dcfd9d8420f585881/node-8.3.0-linux-x64-8e2f91f8.tgz]
+       Using default npm version: 5.3.0
+-----> Installing yarn 0.27.5
+       Copy [/tmp/buildpacks/d4766448602964ccef4cfd240e0e9b4f/dependencies/1693718df1cf6b5af02c2a7e93a93d62/yarn-v0.27.5-73002997.tar.gz]
+       Installed yarn 0.27.5
+-----> Creating runtime environment
+       PRO TIP: It is recommended to vendor the application's Node.js dependencies
+       Visit http://docs.cloudfoundry.org/buildpacks/node/index.html#vendoring
+       NODE_ENV=production
+       NODE_HOME=/tmp/contents947034708/deps/0/node
+       NODE_MODULES_CACHE=true
+       NODE_VERBOSE=false
+       NPM_CONFIG_LOGLEVEL=error
+       NPM_CONFIG_PRODUCTION=true
+-----> Restoring cache
+       Loading 3 from cacheDirectories (default):
+       - .npm
+       - .cache/yarn (not cached - skipping)
+       - bower_components (not cached - skipping)
+-----> Building dependencies
+       Installing node modules (package.json)
+up to date in 0.093s
+-----> Caching build
+       Clearing previous node cache
+       Saving 3 cacheDirectories (default):
+       - .npm
+       - .cache/yarn (nothing to cache)
+       - bower_components (nothing to cache)
+       **WARNING** This app may not specify any way to start a node process
+       See: https://docs.cloudfoundry.org/buildpacks/node/node-tips.html#start
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (466B)
+Uploaded droplet (17.6M)
+Uploading complete
+Stopping instance e7910e2f-a7be-441e-8d98-2b172c8e2510
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App nodejsapp was started using this command `node hello.js`
+
+Showing health and status for app nodejsapp in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: nodejsapp-eudemonistical-superstar.cfapps.io
+last uploaded: Sun Sep 17 09:36:34 UTC 2017
+stack: cflinuxfs2
+buildpack: nodejs_buildpack
+
+     state     since                    cpu    memory          disk            details
+#0   running   2017-09-17 11:36:57 AM   0.0%   11.1M of 128M   64.3M of 256M
+cf push -f manifest.yml  0.38s user 0.17s system 1% cpu 34.706 total

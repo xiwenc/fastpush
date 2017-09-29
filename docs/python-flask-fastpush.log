@@ -1,0 +1,90 @@
+Using manifest file manifest-fastpush.yml
+
+Updating app python-flask-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading python-flask-fastpush...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/python-flask
+Uploading 1.1K, 4 files
+Done uploading
+OK
+
+Stopping app python-flask-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app python-flask-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading python_buildpack...
+Downloaded python_buildpack
+Creating container
+Successfully created container
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (1.1K)
+-------> Buildpack version 1.5.24
+ !     Warning: Your application is missing a Procfile. This file tells Cloud Foundry how to run your application.
+ !     Learn more: https://docs.cloudfoundry.org/buildpacks/prod-server.html#procfile
+-----> Installing python-2.7.13
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_python_python-2.7.13-linux-x64-5cf1a1af.tgz]
+-----> Installing Setuptools (32.1.0)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_setuptools_setuptools-32.1.0-44054eaa.tar.gz]
+-----> Installing Pip (9.0.1)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_pip_pip-9.0.1-35f01da3.tar.gz]
+-----> Installing pip-pop (0.1.1)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_pip-pop_pip-pop-0.1.1-d410583a.tar.gz]
+-----> Installing pipenv (4.0.1)
+Downloaded [file:///tmp/buildpacks/59997e7f7bda40108501922925e2d303/dependencies/https___buildpacks.cloudfoundry.org_dependencies_manual-binaries_pipenv_pipenv-4.0.1-148f753f.tar.gz]
+     $ pip install -r requirements.txt
+       Collecting Flask (from -r requirements.txt (line 1))
+         Downloading Flask-0.12.2-py2.py3-none-any.whl (83kB)
+       Collecting itsdangerous>=0.21 (from Flask->-r requirements.txt (line 1))
+         Downloading itsdangerous-0.24.tar.gz (46kB)
+       Collecting click>=2.0 (from Flask->-r requirements.txt (line 1))
+         Downloading click-6.7-py2.py3-none-any.whl (71kB)
+       Collecting Jinja2>=2.4 (from Flask->-r requirements.txt (line 1))
+         Downloading Jinja2-2.9.6-py2.py3-none-any.whl (340kB)
+       Collecting Werkzeug>=0.7 (from Flask->-r requirements.txt (line 1))
+         Downloading Werkzeug-0.12.2-py2.py3-none-any.whl (312kB)
+       Collecting MarkupSafe>=0.23 (from Jinja2>=2.4->Flask->-r requirements.txt (line 1))
+         Downloading MarkupSafe-1.0.tar.gz
+       Installing collected packages: itsdangerous, click, MarkupSafe, Jinja2, Werkzeug, Flask
+         Running setup.py install for itsdangerous: started
+           Running setup.py install for itsdangerous: finished with status 'done'
+         Running setup.py install for MarkupSafe: started
+           Running setup.py install for MarkupSafe: finished with status 'done'
+       Successfully installed Flask-0.12.2 Jinja2-2.9.6 MarkupSafe-1.0 Werkzeug-0.12.2 click-6.7 itsdangerous-0.24
+No start command specified by buildpack or via Procfile.
+App will not start unless a command is provided at runtime.
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (33.7M)
+Uploaded droplet (33.7M)
+Uploading complete
+Stopping instance ba28be6a-0e2e-4729-8b98-4d0a44e38583
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App python-flask-fastpush was started using this command `wget -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp`
+
+Showing health and status for app python-flask-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 128M x 1 instances
+urls: python-flask-fastpush-acicular-epithalamion.cfapps.io
+last uploaded: Wed Sep 13 17:26:42 UTC 2017
+stack: cflinuxfs2
+buildpack: python_buildpack
+
+     state     since                    cpu    memory          disk             details
+#0   running   2017-09-13 07:27:53 PM   0.0%   27.7M of 128M   131.3M of 256M
+cf push -f manifest-fastpush.yml  0.53s user 0.31s system 1% cpu 1:19.12 total

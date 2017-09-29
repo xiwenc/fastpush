@@ -1,0 +1,8 @@
+warning: dry run not set, commencing fast push
+Running the fast-push command
+Target app: python-flask-fastpush
+
+[NEW] manifest.yml
+[MOD] sample.css
+Updated 2 files without restart
+cf fast-push python-flask-fastpush  0.37s user 0.10s system 9% cpu 5.134 total

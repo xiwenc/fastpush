@@ -1,0 +1,74 @@
+Using manifest file manifest-fastpush.yml
+
+Updating app wordpress-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Uploading wordpress-fastpush...
+Uploading app files from: /Users/xcheng/projects/fastpush/examples/wordpress
+Uploading 4.4M, 1562 files
+Done uploading
+OK
+Binding service wordpress-db to app wordpress-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Stopping app wordpress-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+Starting app wordpress-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+Downloading php_buildpack...
+Downloaded php_buildpack
+Creating container
+Successfully created container
+Downloading build artifacts cache...
+Downloading app package...
+Downloaded app package (8.4M)
+Installing HTTPD
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_httpd_httpd-2.4.27-linux-x64-ebe06494.tgz] to [/tmp]
+-------> Buildpack version 4.3.42
+HTTPD 2.4.27
+Installing PHP
+PHP 5.6.31
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2551a0b1.tgz] to [/tmp]
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_php_php-5.6.31-linux-x64-2551a0b1.tgz] to [/tmp]
+Downloaded [file:///tmp/buildpacks/f4b9c9c53c61bae91a2e896b6a58a38d/dependencies/https___buildpacks.cloudfoundry.org_dependencies_composer_composer-1.5.2-ac2fa3db.phar] to [/tmp]
+PROTIP: Include a `composer.lock` file with your application! This will make sure the exact same version of dependencies are used when you deploy to CloudFoundry.
+Loading composer repositories with package information
+Updating dependencies
+Nothing to install or update
+Writing lock file
+Generating autoload files
+Finished: [2017-09-20 22:18:20.835475]
+Exit status 0
+Uploading droplet, build artifacts cache...
+Uploading build artifacts cache...
+Uploading droplet...
+Uploaded build artifacts cache (987B)
+Uploaded droplet (65.2M)
+Uploading complete
+Stopping instance 9da79845-9794-4fcc-925d-1494a26c3f0a
+Destroying container
+Successfully destroyed container
+
+1 of 1 instances running
+
+App started
+
+
+OK
+
+App wordpress-fastpush was started using this command `wget -q -O ./fp https://github.com/xiwenc/cf-fastpush-controller/releases/download/v1.1.0/cf-fastpush-controller_linux_amd64 && chmod +x ./fp && ./fp`
+
+Showing health and status for app wordpress-fastpush in org mendix-rnd.com / space experimentation as xiwen.cheng@mendix.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 256M x 1 instances
+urls: wordpress-fastpush-nonveracious-hedgehog.cfapps.io
+last uploaded: Wed Sep 20 22:17:49 UTC 2017
+stack: cflinuxfs2
+buildpack: php_buildpack
+
+     state     since                    cpu    memory          disk             details
+#0   running   2017-09-21 12:18:45 AM   0.0%   34.7M of 256M   208.1M of 512M
+cf push -f manifest-fastpush.yml  1.36s user 0.75s system 2% cpu 1:37.20 total
